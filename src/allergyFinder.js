@@ -3,8 +3,6 @@ module.exports.getAllergies = getAllergies;
 const https = require('https');
 function getAllergies(query, callback) {
   https.get('https://api.edamam.com/search?app_id=db157fce&app_key=4d0a7088ab759fa8f4f7f1b1503cb98a&from=0&to=1&q=' + encodeURIComponent(query), (res) => {
-    print('statusCode:', res.statusCode);
-    print('headers:', res.headers);
     var data = [
     ];
     res.on('data', function (chunk) {
@@ -33,7 +31,7 @@ function extractAllergies(healthLabels) {
     'tree-nut-free': 'Tree Nuts',
     'peanut-free': 'Peanuts'
   };
-  print('healthLabels:', healthLabels);
+
   var res = [
   ];
   for (var typeOfAllergy in allergies) {
@@ -51,7 +49,6 @@ function extractAllergies(healthLabels) {
   return res;
 }
 function process(jsonString) {
-  print('jsonString:', jsonString);
   try {
     var jsonObj = JSON.parse(jsonString);
     var healthLabels = getHealthLabels(jsonObj);
