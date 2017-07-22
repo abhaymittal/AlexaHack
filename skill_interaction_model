@@ -1,0 +1,112 @@
+INTENT SCHEMA
+
+{
+  "intents": [
+    {
+      "intent": "AllergenCheckIntent"
+    },
+    {
+      "intent": "AddPersonIntent",
+      "slots": [
+        {
+          "name": "PersonName",
+          "type": "AMAZON.Person"
+        }
+      ]
+    },
+    {
+      "intent": "GetPersonIntent"
+    },
+    {
+      "intent": "GetAllergiesIntent"
+    },
+    {
+      "intent": "WhatsMyColorIntent"
+    },
+    {
+      "intent": "MyColorIsIntent",
+      "slots": [
+        {
+          "name": "Color",
+          "type": "LIST_OF_COLORS"
+        }
+      ]
+    },
+    {
+      "intent": "SetGroupNameIntent",
+      "slots": [
+        {
+          "name": "GroupName",
+          "type": "LIST_OF_GROUPS"
+        }
+      ]
+    },
+    {
+      "intent": "SetRecipeIntent",
+      "slots": [
+        {
+          "name": "Recipe",
+          "type": "AMAZON.Food"
+        }
+      ]
+    },
+    {
+      "intent": "InvokeAllergyCheckIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}
+
+
+
+CUSTOM SLOT TYPES
+
+LIST_OF_COLORS
+green
+red
+blue
+orange
+gold
+silver
+yellow
+black
+white
+
+LIST_OF_GROUPS
+friends
+family
+
+
+
+UTTERANCES
+
+AllergenCheckIntent dummy dummy dummy
+WhatsMyColorIntent what's my favorite color
+WhatsMyColorIntent what is my favorite color
+WhatsMyColorIntent what's my color
+WhatsMyColorIntent what is my color
+WhatsMyColorIntent my color
+WhatsMyColorIntent my favorite color
+WhatsMyColorIntent get my color
+WhatsMyColorIntent get my favorite color
+WhatsMyColorIntent give me my favorite color
+WhatsMyColorIntent give me my color
+WhatsMyColorIntent what my color is
+WhatsMyColorIntent what my favorite color is
+WhatsMyColorIntent yes
+WhatsMyColorIntent yup
+WhatsMyColorIntent sure
+WhatsMyColorIntent yes please
+MyColorIsIntent my favorite color is {Color}
+AddPersonIntent add new person with name {PersonName}
+GetPersonIntent get new person
+GetAllergiesIntent which guests have allergies
+InvokeAllergyCheckIntent can you do an allergy check
+InvokeAllergyCheckIntent do an allergy check
+InvokeAllergyCheckIntent an allergy check
+InvokeAllergyCheckIntent allergy check
+InvokeAllergyCheckIntent check
+SetRecipeIntent i'm making {Recipe}
+SetGroupNameIntent i'm inviting my {GroupName}
