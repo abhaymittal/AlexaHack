@@ -31,12 +31,86 @@ function writeItem(item,callback) {
 	    "Groups":docClient.createSet(item.Groups),
 	    "Allergens":docClient.createSet(item.Allergens)
 	}
-    }
-
-
+    };
 
     docClient.put(params,callback);
 }
+
+
+function addAllergy(personName,allergy,callback) {
+    var docClient=new AWS.DynamoDB.DocumentClient();
+
+    var params= {
+	TableName: table,
+	Key: {
+	    "Name": personName
+	},
+	UpdateExpression: "ADD Allergens :allergy",
+	ExpressionAttributeValues: {
+	    ":allergy":docClient.createSet(allergy)
+	},
+	ReturnValues:"UPDATED_NEW"
+    };
+
+    docClient.update(params,callback);
+}
+
+function addGroup(personName,group,callback) {
+    var docClient=new AWS.DynamoDB.DocumentClient();
+
+    var params= {
+	TableName: table,
+	Key: {
+	    "Name": personName
+	},
+	UpdateExpression: "ADD Groups :group",
+	ExpressionAttributeValues: {
+	    ":group":docClient.createSet(group)
+	},
+	ReturnValues:"UPDATED_NEW"
+    };
+
+    docClient.update(params,callback);
+}
+
+function delAllergy(personName,allergy,callback) {
+    var docClient=new AWS.DynamoDB.DocumentClient();
+
+    var params= {
+	TableName: table,
+	Key: {
+	    "Name": personName
+	},
+	UpdateExpression: "DELETE Allergens :allergy",
+	ExpressionAttributeValues: {
+	    ":allergy":docClient.createSet(allergy)
+	},
+	ReturnValues:"UPDATED_NEW"
+    };
+
+    docClient.update(params,callback);
+}
+
+
+function delGroup(personName,group,callback) {
+    var docClient=new AWS.DynamoDB.DocumentClient();
+
+    var params= {
+	TableName: table,
+	Key: {
+	    "Name": personName
+	},
+	UpdateExpression: "DELETE Groups :group",
+	ExpressionAttributeValues: {
+	    ":group":docClient.createSet(group)
+	},
+	ReturnValues:"UPDATED_NEW"
+    };
+
+    docClient.update(params,callback);
+}
+
+
 
 function getPeopleInGroup(groupName,callback) {
     var params={
@@ -53,5 +127,9 @@ function getPeopleInGroup(groupName,callback) {
 module.exports= {
     getItem,
     writeItem,
-    getPeopleInGroup
+    getPeopleInGroup,
+    addAllergy,
+    addGroup,
+    delAllergy,
+    delGroup
 }
